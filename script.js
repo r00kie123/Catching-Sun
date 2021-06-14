@@ -34,7 +34,7 @@ let painScream = new Audio();
 painScream.src="./touchThunderSound.wav"
 
 let startAudio = new Audio();
-startAudio.scr = "./gameMusic.mp3"
+startAudio.src = "./gameMusic.mp3"
 
 let gameOverAudio = new Audio();
 //gameOverAudio.src=""
@@ -75,7 +75,7 @@ function start(){
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'   
     startBtn.style.display = 'none'
-    startAudio.play()
+    startAudio.play()    //why is this not playing??              
     playGame()
 
 }
@@ -126,7 +126,25 @@ function animateSun(){
                 x: 400,
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
+            console.log(suns)
        } 
+
+       if(wonderwomanX + wonderWoman.width >= suns[i].x && wonderwomanX <= suns[i].x + sun.width)//(wonderwomanY <= suns[i].y + sun.height || wonderwomanY + wonderWoman.height >= suns[i].y)){
+        {
+        
+            if(wonderwomanY + wonderWoman.height < suns[i].y + sun.height && wonderwomanY + wonderWoman.height > suns[i].y) {
+        
+                lifepoints +=10;    //chceks 60 times/sec, thats why score so extrem hoch
+
+                //update the X-coordinate
+            }
+        
+        
+        
+        }
+
+
+
 
     }
 
@@ -163,8 +181,9 @@ function animateAllObjects(){
 
 function playGame(){
 
+ 
 
-draw();     //code works up until here!  scope issue???
+draw();     
  
 animateAllObjects();
 
@@ -174,9 +193,7 @@ animateAllObjects();
 if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonderwomanY < 0) {
     gameOver=true;
  }
-
-
-         
+     
        
  if (gameOver) {
      
@@ -189,7 +206,31 @@ if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonde
  }  
 
 
+//Increasing & decreasing score conditions
+
+
+ 
+
+
+
+//sun collision 
+
+
+
+//top/buttom collision
+
+
+
+
 }
+
+
+
+
+
+
+
+
 
 
 function draw(){

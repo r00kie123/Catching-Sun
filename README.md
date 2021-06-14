@@ -10,7 +10,7 @@ three stages
 Game has one avatar and a background
 obstacles keep appearing randomly
 score keeps in- and decreasing depending on "positive" or "negative" collisions
-gameover condition
+gameover condition with restart option
 
 
 Backlog
@@ -19,15 +19,16 @@ Abilty to start game at higher level
 Special effects
 At higher levels: Add text, e.g. phrases to hostile and positive collision objects
 Add another game over condition (e.g. time up)
-Make obstacles move 
+Make obstacles move criss-cross
 optimize screensize etc. for different devices
 make obstacles disappear directly after collision
 make sound for every collision
 add inscructions on start page
-add prettier startscreen with image
+add prettier startscreen/gameover screen with image
 add more keydown events (make avatar move vertically and horizontally)
 Increasing difficulty (depending on the current score/time)
 adopt ideal measures/sizes for devices for canvas & button
+cooler jumps
 
 
 
@@ -42,7 +43,10 @@ gameOverScreen
 
 Additional Links
 Trello
+https://trello.com/b/GIojmV1B/trust-the-process
+
 Link url
+http://127.0.0.1:5501/index.html
 
 Slides
 Link Slides.com
