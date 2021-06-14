@@ -47,6 +47,7 @@ let lifepoints = 100;
 let falling = true
 let wonderwomanX = 30, wonderwomanY = 50
 
+
 //variables, composites
 let suns = [
     {x: 200, y: 0}, 
@@ -75,7 +76,7 @@ function start(){
     restartBtn.style.display = 'none'   
     startBtn.style.display = 'none'
     startAudio.play()
-    draw()
+    playGame()
 
 }
 
@@ -150,13 +151,49 @@ function animateAllObjects(){
 
     animateSun();
  
-    animateWonderwoman()
+    animateWonderwoman();
 
 }
 
 
 
+
+
+
+
+function playGame(){
+
+
+draw();     //code works up until here!  scope issue???
+ 
+animateAllObjects();
+
+
+
+//Game over/play conditions
+if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonderwomanY < 0) {
+    gameOver=true;
+ }
+
+
+         
+       
+ if (gameOver) {
+     
+    endGame();
+     
+ }
+ else {
+     intervalId = requestAnimationFrame(playGame)
+
+ }  
+
+
+}
+
+
 function draw(){
+
 
     ctx.drawImage( mySpace, 0, 0)
     ctx.drawImage( wonderWoman, wonderwomanX, wonderwomanY)
@@ -166,45 +203,8 @@ function draw(){
     ctx.fillStyle = "white"
     ctx.fillText(`Lifepoints: ${lifepoints}`, 20, canvas.height - 20)
 
-
-}
-
-
-
-function playGame(){
-
-
-draw();
-animateAllObjects()
-
-
-
-
-//Game over/play conditions
-if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonderwomanY < 0) {
-    gameOver=true;
- }
-
-else {
-
- animateWonderwoman();
-}
-         
-       
- if (gameOver) {
      
-    endGame();
-     
- }
- else {
-     intervalId = requestAnimationFrame(draw)
-
- }  
-
-
 }
-
-
        
        
        //Collision logic and dieser Stelle!! 1. Frontale collision:
@@ -265,8 +265,7 @@ window.addEventListener('load', () => {
     })
 
 
-    //jumps: not completely working yet, event.code ist richtig, 
-    //aber Bewegung soll anders aussehen??
+    //jumps: event.code ist richtig,aber Bewegung soll anders aussehen??
     document.addEventListener("keydown", (event) => {
 
 
