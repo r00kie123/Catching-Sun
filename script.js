@@ -102,7 +102,7 @@ function animateThunder(){
 
         if (thunders[i].x + thunder.width < 0) {
             thunders[i] = {
-                x: 400,
+                x: 600,
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
        } 
@@ -114,10 +114,10 @@ function animateThunder(){
            if(wonderwomanY + wonderWoman.height < thunders[i].y + thunder.height && wonderwomanY + wonderWoman.height > thunders[i].y) {
        
                painScream.play();
-               lifepoints -=10;    //chceks 60 times/sec, thats why score so extrem hoch
+               lifepoints -=20;    //chceks 60 times/sec, thats why score so extrem hoch
 
                //update the X-coordinate
-               thunders[i].x=400;
+               thunders[i].x=600;
 
            }
        
@@ -144,7 +144,7 @@ function animateSun(){
        
         if (suns[i].x + sun.width < 0) {
             suns[i] = {
-                x: 400,
+                x: 550,
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
             
@@ -159,7 +159,7 @@ function animateSun(){
                 lifepoints +=10;    //chceks 60 times/sec, thats why score so extrem hoch
 
                 //update the X-coordinate
-                suns[i].x=400;
+                suns[i].x=550;
 
             }
         
