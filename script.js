@@ -34,7 +34,7 @@ let painScream = new Audio();
 painScream.src="./touchThunderSound.wav"
 
 let startAudio = new Audio();
-//startAudio.src=""
+startAudio.scr = "./gameMusic.mp3"
 
 let gameOverAudio = new Audio();
 //gameOverAudio.src=""
@@ -74,7 +74,7 @@ function start(){
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'   
     startBtn.style.display = 'none'
-    //startAudio.play()
+    startAudio.play()
     draw()
 
 }
@@ -87,7 +87,70 @@ function endGame(){
     restartBtn.style.display = "block"
     startBtn.style.display = 'none'
     startAudio.pause();
-    gameOverAudio.play();
+    //gameOverAudio.play();
+
+}
+
+
+function animateThunder(){
+
+    for(let i=0 ; i< thunders.length; i++){
+        ctx.drawImage(thunder, thunders[i].x, thunders[i].y )
+    
+        thunders[i].x -= 1
+
+        if (thunders[i].x + thunder.width < 0) {
+            thunders[i] = {
+                x: 400,
+                y: Math.floor(Math.random() * (canvas.height -50))
+            }
+       } 
+
+    }
+
+
+}
+
+
+function animateSun(){
+
+    for(let i=0 ; i< suns.length; i++){
+        ctx.drawImage(sun, suns[i].x, suns[i].y )
+        
+        suns[i].x -= 1
+
+       
+        if (suns[i].x + sun.width < 0) {
+            suns[i] = {
+                x: 400,
+                y: Math.floor(Math.random() * (canvas.height -50))
+            }
+       } 
+
+    }
+
+}
+
+function animateWonderwoman(){
+
+
+    if (falling) {
+        wonderwomanY += 2
+    }
+    else {
+        wonderwomanY -= 5
+    }    
+
+}
+
+
+function animateAllObjects(){
+
+    animateThunder();
+
+    animateSun();
+ 
+    animateWonderwoman()
 
 }
 
@@ -104,39 +167,44 @@ function draw(){
     ctx.fillText(`Lifepoints: ${lifepoints}`, 20, canvas.height - 20)
 
 
+}
 
-    for(let i=0 ; i< suns.length; i++){
-        ctx.drawImage(sun, suns[i].x, suns[i].y )
-        
-        suns[i].x -= 1
 
+
+function playGame(){
+
+
+draw();
+animateAllObjects()
+
+
+
+
+//Game over/play conditions
+if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonderwomanY < 0) {
+    gameOver=true;
+ }
+
+else {
+
+ animateWonderwoman();
+}
+         
        
-        if (suns[i].x + sun.width < 0) {
-            suns[i] = {
-                x: 400,
-                y: Math.floor(Math.random() * (canvas.height -50))
-            }
-       } 
+ if (gameOver) {
+     
+    endGame();
+     
+ }
+ else {
+     intervalId = requestAnimationFrame(draw)
 
-       for(let i=0 ; i< thunders.length; i++){
-        ctx.drawImage(thunder, thunders[i].x, thunders[i].y )
-        //ctx.drawImage(pipeSouth, pipes[i].x,  pipes[i].y + gap)
-        thunders[i].x -= 1
-
-        if (thunders[i].x + thunder.width < 0) {
-            thunders[i] = {
-                x: 400,
-                y: Math.floor(Math.random() * (canvas.height -50))
-            }
-       } 
-
-    }
-
+ }  
 
 
 }
 
-    
+
        
        
        //Collision logic and dieser Stelle!! 1. Frontale collision:
@@ -144,8 +212,6 @@ function draw(){
        //function collision(){.....}
 
 
-
-       
 
       /* if(wonderwomanY+wonderWoman.height>= suns[i].y && wonderwomanY <= suns[i].y + sun.height && wonderwomanX<= suns[i].x + sun.width){
 
@@ -166,41 +232,10 @@ lifepoints +=10;
      
 
 
-
-
-
+    
+    
 
     
-    }
-
-      
-
-
-
-    //if wonderwoman leaves canvas oben/unten -> gameover
-    if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonderwomanY < 0) {
-       gameOver=true;
-    }
-   
-else {
-    if (falling) {
-        wonderwomanY += 2
-    }
-    else {
-        wonderwomanY -= 5
-    }    
-}
-            
-          
-    if (gameOver) {
-        
-       endGame();
-        
-    }
-    else {
-        intervalId = requestAnimationFrame(draw)
-
-    }  
 
 
 
@@ -209,15 +244,14 @@ else {
 
 
 
+//Event listeners
 
-//Everything begins here
 window.addEventListener('load', () => {
     canvas.style.display = 'none'
      restartBtn.style.display = 'none'   
      startBtn.style.display = 'block'
      
- 
- //ÄNDERUNGEN HIER
+
  
  
  document.addEventListener("keydown", (event) => {
@@ -261,14 +295,11 @@ window.addEventListener('load', () => {
  
      startBtn.addEventListener('click', () => {
       
-     canvas.style.display = 'block'
-     restartBtn.style.display = 'none'
-     startBtn.style.display = 'none'
-     draw()
+     
+     start()
 
-     //start()
+    
 
-     //startAudio.play()
      })
  
      restartBtn.addEventListener('click', () => {
