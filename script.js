@@ -107,6 +107,27 @@ function animateThunder(){
             }
        } 
 
+
+       if(wonderwomanX + wonderWoman.width >= thunders[i].x && wonderwomanX <= thunders[i].x + thunder.width)
+       {
+       
+           if(wonderwomanY + wonderWoman.height < thunders[i].y + thunder.height && wonderwomanY + wonderWoman.height > thunders[i].y) {
+       
+               painScream.play();
+               lifepoints -=10;    //chceks 60 times/sec, thats why score so extrem hoch
+
+               //update the X-coordinate
+               thunders[i].x=400;
+
+           }
+       
+       
+       
+       }
+
+
+
+
     }
 
 
@@ -126,17 +147,20 @@ function animateSun(){
                 x: 400,
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
-            console.log(suns)
+            
        } 
 
-       if(wonderwomanX + wonderWoman.width >= suns[i].x && wonderwomanX <= suns[i].x + sun.width)//(wonderwomanY <= suns[i].y + sun.height || wonderwomanY + wonderWoman.height >= suns[i].y)){
+       if(wonderwomanX + wonderWoman.width >= suns[i].x && wonderwomanX <= suns[i].x + sun.width)
         {
         
             if(wonderwomanY + wonderWoman.height < suns[i].y + sun.height && wonderwomanY + wonderWoman.height > suns[i].y) {
         
+                joyscream.play();
                 lifepoints +=10;    //chceks 60 times/sec, thats why score so extrem hoch
 
                 //update the X-coordinate
+                suns[i].x=400;
+
             }
         
         
