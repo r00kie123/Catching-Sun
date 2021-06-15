@@ -14,7 +14,7 @@ gameover condition with restart option
 
 
 Backlog
-Add "chose your avatar" page 
+Add "chose your avatar" page (avatars with different gadgets/talents?)
 Abilty to start game at higher level
 Special effects
 At higher levels: Add text, e.g. phrases to hostile and positive collision objects

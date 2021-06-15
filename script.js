@@ -1,13 +1,20 @@
 
-//canvas
+//canvas 
 let canvas = document.getElementById('mycanv');
 let ctx = canvas.getContext('2d');
 canvas.style.border = 'none';
 
 
+//startpage
+let avatpage = document.getElementById('avatPage');
+
+
+
 //buttons
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
+let anissaBtn = document.querySelector('#avatanissa')
+let wonderwomanBtn = document.querySelector('#avatwonderwoman')
 
 
 
@@ -16,14 +23,25 @@ let mySpace = new Image();
 mySpace.src='./milky-way-67504_640.jpg'
 
 
-let wonderWoman = new Image();
-wonderWoman.src = './wonderwoman.png (2).png'
-
 let sun = new Image();
 sun.src = './sun.png'
 
 let thunder = new Image();
 thunder.src = './thunder.png'
+
+/*let clickableAnissa = new Image();                //the clickalbe images!!
+clickableAnissa.src= "./avatar anissa (1).png"
+
+let clickableWonderwoman = new Image();
+clickableWonderwoman.src="./avatar wonderwoman2.png"  //the clickable images!! */
+
+let smallAvatanissa = new Image();
+smallAvatanissa.src="./anissaFly2.png"
+
+let smallAvatWonderWoman= new Image();
+smallAvatWonderWoman.src="./wonderwoman.png (2).png"
+
+
 
 
 //audios 
@@ -40,13 +58,13 @@ let gameOverAudio = new Audio();
 //gameOverAudio.src=""
 
 
-//variables, primitives
+//variables, primitives, defaults
 let intervalId = 0;   //or null?  
 let gameOver = false;
 let lifepoints = 100;
 let falling = true
-let wonderwomanX = 30, wonderwomanY = 50
-
+let avatarX = 30, avatarY = 50;
+let avatar = smallAvatanissa;     //default value 
 
 //variables, composites
 let suns = [
@@ -70,12 +88,14 @@ function start(){
     gameOver = false;
     lifepoints = 100;
     falling = true
-    wonderwomanX = 30, 
-    wonderwomanY = 50
+    avatarX = 30, 
+    avatarY = 50   
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'   
     startBtn.style.display = 'none'
-    startAudio.play()    //why is this not playing??              
+    avatpage.style.display ="none"
+    
+    startAudio.play()                
     playGame()
 
 }
@@ -93,6 +113,8 @@ function endGame(){
 }
 
 
+
+
 function animateThunder(){
 
     for(let i=0 ; i< thunders.length; i++){
@@ -108,15 +130,13 @@ function animateThunder(){
        } 
 
 
-       if(wonderwomanX + wonderWoman.width >= thunders[i].x && wonderwomanX <= thunders[i].x + thunder.width)
+       if(avatarX + avatar.width >= thunders[i].x && avatarX <= thunders[i].x + thunder.width)
        {
        
-           if(wonderwomanY + wonderWoman.height < thunders[i].y + thunder.height && wonderwomanY + wonderWoman.height > thunders[i].y) {
+           if(avatarY + avatar.height < thunders[i].y + thunder.height && avatarY + avatar.height > thunders[i].y) {
        
                painScream.play();
-               lifepoints -=20;    //chceks 60 times/sec, thats why score so extrem hoch
-
-               //update the X-coordinate
+               lifepoints -=20;    
                thunders[i].x=600;
 
            }
@@ -150,10 +170,10 @@ function animateSun(){
             
        } 
 
-       if(wonderwomanX + wonderWoman.width >= suns[i].x && wonderwomanX <= suns[i].x + sun.width)
+       if(avatarX + avatar.width >= suns[i].x && avatarX <= suns[i].x + sun.width)
         {
         
-            if(wonderwomanY + wonderWoman.height < suns[i].y + sun.height && wonderwomanY + wonderWoman.height > suns[i].y) {
+            if(avatarY + avatar.height < suns[i].y + sun.height && avatarY + avatar.height > suns[i].y) {
         
                 joyscream.play();
                 lifepoints +=10;    //chceks 60 times/sec, thats why score so extrem hoch
@@ -174,14 +194,14 @@ function animateSun(){
 
 }
 
-function animateWonderwoman(){
+function animateAvatar(){
 
 
     if (falling) {
-        wonderwomanY += 2
+        avatarY += 2
     }
     else {
-        wonderwomanY -= 5
+        avatarY -= 5
     }    
 
 }
@@ -193,7 +213,7 @@ function animateAllObjects(){
 
     animateSun();
  
-    animateWonderwoman();
+    animateAvatar();
 
 }
 
@@ -214,7 +234,7 @@ animateAllObjects();
 
 
 //Game over/play conditions
-if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonderwomanY < 0) {
+if (avatarY + avatar.height >= canvas.height || lifepoints==0 || avatarY < 0) {
     gameOver=true;
  }
      
@@ -227,30 +247,12 @@ if (wonderwomanY + wonderWoman.height >= canvas.height || lifepoints==0 || wonde
  else {
      intervalId = requestAnimationFrame(playGame)
 
- }  
-
-
-//Increasing & decreasing score conditions
-
-
- 
-
-
-
-//sun collision 
-
-
-
-//top/buttom collision
+ } 
 
 
 
 
 }
-
-
-
-
 
 
 
@@ -261,7 +263,7 @@ function draw(){
 
 
     ctx.drawImage( mySpace, 0, 0)
-    ctx.drawImage( wonderWoman, wonderwomanX, wonderwomanY)
+    ctx.drawImage( avatar, avatarX, avatarY)
 
 
     ctx.font = '23px Comic Sans MS'
@@ -272,30 +274,7 @@ function draw(){
 }
        
        
-       //Collision logic and dieser Stelle!! 1. Frontale collision:
-
-       //function collision(){.....}
-
-
-
-      /* if(wonderwomanY+wonderWoman.height>= suns[i].y && wonderwomanY <= suns[i].y + sun.height && wonderwomanX<= suns[i].x + sun.width){
-
-lifepoints +=10;
-
-       }  */
-
-/*
-       if (wonderwomanX < suns[i].x + sun.width &&
-        wonderwomanX + wonderWoman.width > suns[i].x &&
-        wonderwomanY < suns[i].y + sun.height &&
-        wonderwomanY + wonderWoman.height > suns[i].y) {
-       
-
-            lifepoints +=10;
-
-     }   */
      
-
 
     
     
@@ -312,9 +291,15 @@ lifepoints +=10;
 //Event listeners
 
 window.addEventListener('load', () => {
-    canvas.style.display = 'none'
+     canvas.style.display = 'none'
      restartBtn.style.display = 'none'   
+       
      startBtn.style.display = 'block'
+     avatpage.style.display ="block";
+
+    
+   
+ 
      
 
  
@@ -337,7 +322,7 @@ window.addEventListener('load', () => {
         if (event.code == 'Space'){
 
             falling = false;
-            wonderwomanX +=80;
+            avatarX +=80;
         }
     
         
@@ -361,7 +346,7 @@ window.addEventListener('load', () => {
       
      
      start()
-
+//console.log(startBtn)
     
 
      })
@@ -371,6 +356,20 @@ window.addEventListener('load', () => {
       start()
        
 
+     })
+
+
+     anissaBtn.addEventListener('click', ()=>{
+
+
+      avatar = smallAvatanissa;
+
+     })
+
+
+     wonderwomanBtn.addEventListener('click', ()=>{
+
+        avatar = smallAvatWonderWoman;
      })
  
  })
