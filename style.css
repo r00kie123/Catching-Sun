@@ -8,12 +8,21 @@
     src: url("./fonts/COMIZ___.TTF");
 }
 
+@font-face {
+    font-family: "MYCOMICFONT";
+    src: url("./fonts/SunnySand.otf");
+}
 
+@font-face {
+    font-family: "MIXCOMIC";
+    src: url("./fonts/MixComic.ttf");
+}
 
 
 .heading {
 
-font-family: "MARVELFONT";
+    font-family: "MYCOMICFONT";
+ 
 
 }
 
@@ -22,17 +31,18 @@ font-family: "MARVELFONT";
 
 #start {
 
-    font-family: "MARVELFONT";
+    font-family: "MYCOMICFONT";
+   
 
 
 
 }
 
+#youLose{
 
-p{
+
 
     font-family: "MARVELFONT";
-
 
 }
 
@@ -40,6 +50,44 @@ p{
 
 
     font-family: "COUNTDOWN";
+    font-size: xx-large;
 
+
+}
+
+
+
+body{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+body{
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+
+
+}
+
+
+#endPage{
+
+
+    background-color: #ffa500;
+}
+
+
+#instructions{
+
+    font-family: "MIXCOMIC";
+       
 
 }

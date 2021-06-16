@@ -35,9 +35,6 @@ smallAvatanissa.src="./anissaFly2.png"
 let smallAvatWonderWoman= new Image();
 smallAvatWonderWoman.src="./wonderwoman.png (2).png"
 
-/*let gameOvergif = new Image();
-gameOvergif.src ="./game over gif.gif"*/
-
 let countdownNum = document.getElementById('countdown');
 
 
@@ -73,8 +70,13 @@ let intervalId = 0;   //or null?
 let gameOver = false;
 let lifepoints = 100;
 let falling = true
+let isUp = false;
+let isRight= false;
+let isLeft = false;
+let isJumping = false;
 let avatarX = 30, avatarY = 50;
-let avatar = smallAvatanissa;     //default value 
+let avatar = smallAvatanissa;    
+
 
 //variables, composites
 let suns = [
@@ -134,22 +136,22 @@ function endGame(){
     }, 1000)
    
 
+    setTimeout(()=> {      //<-----------muss ich Interval clearen??????
 
-    if(countdownNum.innerText== 0){        
+
+        location.reload();
+
+
+    }, 9000)
+
+
+   /* if(countdownNum.innerText== 0){         //<-----------------das hat nicht funktioniert!!!!!!    
 
      clearInterval(countID);
-    location.reload();
+    location.reload(); */
 
 
-    }
-
-
-    //clear interval danach???
-
-   /* setTimeout(()=>{                
-    location.reload();
-
-    }, 9000)*/
+   
 
     
 
@@ -203,8 +205,7 @@ function animateThunder(){
 function animateSun(){
 
     for(let i=0 ; i< suns.length; i++){
-        ctx.drawImage(sun, suns[i].x, suns[i].y )
-        
+        ctx.drawImage(sun, suns[i].x, suns[i].y ) 
         suns[i].x -= 1
 
        
@@ -224,7 +225,7 @@ function animateSun(){
                 joyscream.play();
                 lifepoints +=10;  
 
-                //update the X-coordinate
+            
                 suns[i].x=canvas.width+1;       //hier eventuell nochmal ändern zu width+10 oder so 
                 suns[i].y = Math.floor(Math.random() * (canvas.height -50))
             }
@@ -246,9 +247,32 @@ function animateAvatar(){
     if (falling) {
         avatarY += 2
     }
-    else {
+    else if(isUp){
         avatarY -= 5
-    }    
+    }  
+    else if (isRight){
+
+        avatarX +=5
+    }
+    else if(isLeft){
+
+        avatarX -=5;
+    }
+
+    else if (isJumping){         ///PABLO FRAGEN ob ich das hier behalte!!!!!!
+
+        avatarX +=80;
+        setTimeout(()=>{
+        avatarX -=80;
+
+        },300)
+    }
+
+   if(avatarX+avatar.width >= canvas.width){            //<---------das funktioniert nicht! 
+       
+    avatarX -=10;
+
+    } 
 
 }
 
@@ -312,7 +336,8 @@ function draw(){
     ctx.drawImage( avatar, avatarX, avatarY)
 
 
-    ctx.font = '23px Comic Sans MS'
+    
+    ctx.font = '23px MIXCOMIC'
     ctx.fillStyle = "white"
     ctx.fillText(`Lifepoints: ${lifepoints}`, 20, canvas.height - 20)
 
@@ -337,17 +362,10 @@ function draw(){
 //Event listeners
 
 window.addEventListener('load', () => {
-     canvas.style.display = 'none'
-     //restartBtn.style.display = 'none'   
-       
+     canvas.style.display = 'none'  
      startBtn.style.display = 'block'
      avatpage.style.display ="block";
      endpage.style.display ="none";
-
-    
-   
- 
-     
 
  
  
@@ -356,28 +374,49 @@ window.addEventListener('load', () => {
     if (event.code == 'ArrowUp'){
 
         falling = false;
+        isUp = true;
+        isRight=false;
+        isLeft = false;
+        isJumping = false; 
+
+    }
+
+
+    if (event.code == 'ArrowRight'){
+    
+        falling = false;
+        isRight=true;
+        isLeft = false;
+        isJumping = false; 
+        isUp = false;
+
+    }
+
+    if (event.code == 'ArrowLeft'){
+
+      falling = false; 
+      isLeft = true;
+      isJumping = false; 
+      isRight = false;
+      isUp = false;
+    }
+
+    if (event.code == 'Space'){ //das noch drin lassen?//////
+
+        falling = false;
+        isJumping = true; 
+        isRight = false;
+        isLeft = false;
+        isUp = false;
+        
     }
 
  
     })
 
 
-    //jumps: event.code ist richtig,aber Bewegung soll anders aussehen??
-    document.addEventListener("keydown", (event) => {
 
 
-        if (event.code == 'Space'){
-
-            falling = false;
-            avatarX +=80;
-            
-        }
-    
-        
-
-        })
-
-    
     
     
     document.addEventListener('keyup', ()=> {
@@ -399,13 +438,6 @@ window.addEventListener('load', () => {
 
      })
  
-     /*restartBtn.addEventListener('click', () => {
-     
-      start()
-       
-
-     })  */
-
 
      anissaBtn.addEventListener('click', ()=>{
 

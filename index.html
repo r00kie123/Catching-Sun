@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trust the Process!</title>
+    <link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
 
 <div id="avatPage">
   <h1 class="heading">Welcome to Trust The Process!</h1>
 
-  <p id="instructions">Will you accept the challenge? Try to catch as many suns as possible and stay away from the thunder! Also: Be careful with the gravity- don't let it get to strong or weak.
-  Use the corresponding arrow keys to let your avatar fly up, right or left. Ready?
+  <p id="instructions">Will you accept the challenge? Try to catch as many suns as possible and stay away from thunder! Also: Be careful with gravity- don't let it get to strong or weak.
+  Use the corresponding arrow keys (^, >, <) to let your avatar fly up, right or left. Ready? 
 
 
 
@@ -28,9 +29,9 @@
   
     <button class ="button" type="button" id="avatwonderwoman">
 <img src="./avatar wonderwoman2.png" alt="Wonder Woman">
-    </button>
-
-
+    </button> 
+    <br>
+    <br>
 
     <button class ="button" type="button" id="start">Let's go!</button>
  
@@ -41,22 +42,18 @@
 
 <div id="endPage">
 
-<!---<img src="./game over gif.gif" alt="You lost. Game over gif. Automatic restart after 10 secs">-->
  
-<p>YOU LOSE.</p>
-<p>TRY AGAIN?</p>
+<p id="youLose">YOU LOSE.<br>
+                TRY AGAIN?</p>
 <p id="countdown">9</p>
 
 </div>
  
 
+<canvas id ="mycanv" width="600" height="450"></canvas>  
 
 
-<canvas id ="mycanv" width="600" height="450"></canvas>   <!-- das hier auch in div??-->
 
-
-  <!--Linking files together-->
-  <script src="./style.css"></script>
 <script src="./script.js"> </script> 
 
 
