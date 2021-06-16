@@ -168,6 +168,17 @@ function animateThunder(){
         ctx.drawImage(thunder, thunders[i].x, thunders[i].y )
     
         thunders[i].x -= 1
+        setTimeout(()=>{
+
+            thunders[i].x -= 2      //auch Level updaten?? also unten "Level: {level}"???
+    
+            },20000)
+
+            setTimeout(()=>{
+
+                thunders[i].x -= 3      //auch Level updaten?? also unten "Level: {level}"???
+        
+                },40000)
 
         if (thunders[i].x + thunder.width < 0) {
             thunders[i] = {
@@ -207,6 +218,17 @@ function animateSun(){
     for(let i=0 ; i< suns.length; i++){
         ctx.drawImage(sun, suns[i].x, suns[i].y ) 
         suns[i].x -= 1
+        setTimeout(()=>{
+
+        suns[i].x -= 2      //auch Level updaten?? also unten "Level: {level}"???
+
+        },20000)
+
+        setTimeout(()=>{
+
+            suns[i].x -= 3     //auch Level updaten?? also unten "Level: {level}"???
+    
+            },40000)
 
        
         if (suns[i].x + sun.width < 0) {
