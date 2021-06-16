@@ -5,20 +5,20 @@ let ctx = canvas.getContext('2d');
 canvas.style.border = 'none';
 
 
-//startpage
+//wireframes/pages
 let avatpage = document.getElementById('avatPage');
-
+let endpage = document.getElementById('endPage');
 
 
 //buttons
 let startBtn = document.querySelector('#start')
-let restartBtn = document.querySelector('#restart')
+//let restartBtn = document.querySelector('#restart')
 let anissaBtn = document.querySelector('#avatanissa')
 let wonderwomanBtn = document.querySelector('#avatwonderwoman')
 
 
 
-// images
+// images & gifs
 let mySpace = new Image();
 mySpace.src='./milky-way-67504_640.jpg'
 
@@ -29,17 +29,15 @@ sun.src = './sun.png'
 let thunder = new Image();
 thunder.src = './thunder.png'
 
-/*let clickableAnissa = new Image();                //the clickalbe images!!
-clickableAnissa.src= "./avatar anissa (1).png"
-
-let clickableWonderwoman = new Image();
-clickableWonderwoman.src="./avatar wonderwoman2.png"  //the clickable images!! */
-
 let smallAvatanissa = new Image();
 smallAvatanissa.src="./anissaFly2.png"
 
 let smallAvatWonderWoman= new Image();
 smallAvatWonderWoman.src="./wonderwoman.png (2).png"
+
+let gameOvergif = new Image();
+gameOvergif.src ="./game over gif.gif"
+
 
 
 
@@ -58,8 +56,14 @@ startAudio.src = "./gameMusic.mp3"
 startAudio.volume = 0.1;
 
 let gameOverAudio = new Audio();
-//gameOverAudio.src=""
+gameOverAudio.src="./gameoverSound.wav"
 gameOverAudio.volume = 0.1;
+
+let gameOverVoice = new Audio();
+gameOverVoice.src ="./gameOverVoice.wav";
+gameOverVoice.volume = 0.1;
+
+
 
 
 //variables, primitives, defaults
@@ -94,10 +98,10 @@ function start(){
     falling = true
     avatarX = 30, 
     avatarY = 50   
-    canvas.style.display = 'block'
-    restartBtn.style.display = 'none'   
+    canvas.style.display = 'block' 
     startBtn.style.display = 'none'
     avatpage.style.display ="none"
+    endpage.style.display="none"
     startAudio.play()                
     playGame()
 
@@ -108,11 +112,27 @@ function endGame(){
 
     cancelAnimationFrame(intervalId)
     canvas.style.display = 'none'
-    restartBtn.style.display = "block"
     startBtn.style.display = 'none'
     startAudio.pause();
-   
-    //gameOverAudio.play();
+    endpage.style.display = "block";
+
+    gameOverAudio.play();
+
+    setTimeout(()=>{
+
+        gameOverVoice.play();
+
+    },1500)
+  
+
+    setTimeout(()=>{                //fix bug. countdown starts at 6 etc. sometimes
+
+    location.reload();
+
+    }, 9000)
+
+    
+
 
 }
 
@@ -128,7 +148,7 @@ function animateThunder(){
 
         if (thunders[i].x + thunder.width < 0) {
             thunders[i] = {
-                x: 600,
+                x: canvas.width+1,   
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
        } 
@@ -141,7 +161,8 @@ function animateThunder(){
        
                painScream.play();
                lifepoints -=20;    
-               thunders[i].x=600;
+               thunders[i].x=canvas.width+1;   
+               thunders[i].y = Math.floor(Math.random() * (canvas.height -50))
 
            }
        
@@ -168,7 +189,7 @@ function animateSun(){
        
         if (suns[i].x + sun.width < 0) {
             suns[i] = {
-                x: 550,
+                x: canvas.width+1,        
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
             
@@ -180,11 +201,11 @@ function animateSun(){
             if(avatarY + avatar.height < suns[i].y + sun.height && avatarY + avatar.height > suns[i].y) {
         
                 joyscream.play();
-                lifepoints +=10;    //chceks 60 times/sec, thats why score so extrem hoch
+                lifepoints +=10;  
 
                 //update the X-coordinate
-                suns[i].x=550;
-
+                suns[i].x=canvas.width+1;       //hier eventuell nochmal ändern zu width+10 oder so 
+                suns[i].y = Math.floor(Math.random() * (canvas.height -50))
             }
         
         
@@ -296,10 +317,11 @@ function draw(){
 
 window.addEventListener('load', () => {
      canvas.style.display = 'none'
-     restartBtn.style.display = 'none'   
+     //restartBtn.style.display = 'none'   
        
      startBtn.style.display = 'block'
      avatpage.style.display ="block";
+     endpage.style.display ="none";
 
     
    
@@ -356,12 +378,12 @@ window.addEventListener('load', () => {
 
      })
  
-     restartBtn.addEventListener('click', () => {
+     /*restartBtn.addEventListener('click', () => {
      
       start()
        
 
-     })
+     })  */
 
 
      anissaBtn.addEventListener('click', ()=>{
