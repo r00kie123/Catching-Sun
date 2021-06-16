@@ -47,15 +47,19 @@ smallAvatWonderWoman.src="./wonderwoman.png (2).png"
 //audios 
 let joyscream = new Audio();
 joyscream.src="./joysound.wav"
+joyscream.volume = 0.1;
 
 let painScream = new Audio();
 painScream.src="./touchThunderSound.wav"
+painScream.volume = 0.1;
 
 let startAudio = new Audio();
 startAudio.src = "./gameMusic.mp3"
+startAudio.volume = 0.1;
 
 let gameOverAudio = new Audio();
 //gameOverAudio.src=""
+gameOverAudio.volume = 0.1;
 
 
 //variables, primitives, defaults
@@ -94,7 +98,6 @@ function start(){
     restartBtn.style.display = 'none'   
     startBtn.style.display = 'none'
     avatpage.style.display ="none"
-    
     startAudio.play()                
     playGame()
 
@@ -108,6 +111,7 @@ function endGame(){
     restartBtn.style.display = "block"
     startBtn.style.display = 'none'
     startAudio.pause();
+   
     //gameOverAudio.play();
 
 }
@@ -323,6 +327,7 @@ window.addEventListener('load', () => {
 
             falling = false;
             avatarX +=80;
+            
         }
     
         
@@ -346,7 +351,7 @@ window.addEventListener('load', () => {
       
      
      start()
-//console.log(startBtn)
+
     
 
      })
