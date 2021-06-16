@@ -1,7 +1,45 @@
+@font-face {
+    font-family: "MARVELFONT";
+    src: url("./fonts/Strange\ Marvel.ttf")
+}
+
+@font-face {
+    font-family: "COUNTDOWN";
+    src: url("./fonts/COMIZ___.TTF");
+}
+
+
+
+
 .heading {
 
+font-family: "MARVELFONT";
 
-font-family: Courier New, Courier, monospace;
+}
+
+
+
+
+#start {
+
+    font-family: "MARVELFONT";
+
+
+
+}
+
+
+p{
+
+    font-family: "MARVELFONT";
+
+
+}
+
+#countdown {
+
+
+    font-family: "COUNTDOWN";
 
 
 }

@@ -35,8 +35,10 @@ smallAvatanissa.src="./anissaFly2.png"
 let smallAvatWonderWoman= new Image();
 smallAvatWonderWoman.src="./wonderwoman.png (2).png"
 
-let gameOvergif = new Image();
-gameOvergif.src ="./game over gif.gif"
+/*let gameOvergif = new Image();
+gameOvergif.src ="./game over gif.gif"*/
+
+let countdownNum = document.getElementById('countdown');
 
 
 
@@ -124,17 +126,36 @@ function endGame(){
 
     },1500)
   
+    let countID = setInterval(()=> {       //mit dieser ID dann clearInterval!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    setTimeout(()=>{                //fix bug. countdown starts at 6 etc. sometimes
+       countdownNum.innerText = Number(countdownNum.innerText) -1
 
+
+    }, 1000)
+   
+
+
+    if(countdownNum.innerText== 0){        
+
+     clearInterval(countID);
     location.reload();
 
-    }, 9000)
+
+    }
+
+
+    //clear interval danach???
+
+   /* setTimeout(()=>{                
+    location.reload();
+
+    }, 9000)*/
 
     
 
 
 }
+
 
 
 
