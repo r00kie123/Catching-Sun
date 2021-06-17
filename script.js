@@ -64,6 +64,9 @@ let click = new Audio();
 click.src="./sounds/click.wav"
 click.volume=0.1;
 
+let avatmusic= new Audio();
+avatmusic.src="./sounds/startmusic.m4a"
+
 
 
 
@@ -108,7 +111,13 @@ function start(){
     startBtn.style.display = 'none'
     avatpage.style.display ="none"
     endpage.style.display="none"
-    startAudio.play()                
+    avatmusic.pause();
+    
+    startAudio.play();
+    setInterval(() => {
+        startAudio.play()    
+    }, 28700);
+    
     playGame()
 
 }
@@ -385,10 +394,13 @@ function draw(){
 //Event listeners
 
 window.addEventListener('load', () => {
-     canvas.style.display = 'none'  
+    avatmusic.play();   //<--------------------------starts too late!!!!
+    canvas.style.display = 'none'  
      startBtn.style.display = 'block'
      avatpage.style.display ="block";
      endpage.style.display ="none";
+    
+
 
  
  
@@ -457,6 +469,7 @@ window.addEventListener('load', () => {
      
      start()
 
+
     
 
      })
@@ -489,11 +502,11 @@ window.addEventListener('load', () => {
        })
   
 
-
      wonderwomanBtn.addEventListener('click', ()=>{
 
         avatar = smallAvatWonderWoman;
      })
+
 
      wonderwomanBtn.addEventListener('mouseover', ()=>{
 
