@@ -1,9 +1,9 @@
-Trust The Process
+Catching Sun
 
-Link Deploy
+https://r00kie123.github.io/Catching-Sun/
 
 Description
-"Trust The Process" is a game where the player can have fun and improve positive thinking at the same time. The avatar is on her way through space and has to avoid collision with certain obstacles while colliding with and thereby catching other ones. The aim is to catch positive objects and avoid negative ones. Once the score reaches 0, the game ends. Also: Be careful with the gravity- don't let it get to strong or weak. 
+"Catching sun" is a game where the player can have fun and catch some positive vibes. The avatar is on her way through space and has to avoid collision with certain objects while colliding with and thereby catching other ones. The aim is to catch positive objects and avoid negative ones. Once the score reaches 0, the game ends. Also: Be careful with the gravity- don't let it get to strong or weak. 
 
 MVP
 three stages 
@@ -27,8 +27,7 @@ add inscructions on start page
 add prettier startscreen/gameover screen with image
 add more keydown events (make avatar move vertically and horizontally)
 Increasing difficulty (depending on the current score/time)
-adopt ideal measures/sizes for devices for canvas & button
-cooler jumps
+add jumps
 
 
 
@@ -43,13 +42,13 @@ gameOverScreen
 
 Additional Links
 Trello
-https://trello.com/b/GIojmV1B/trust-the-process
+https://trello.com/b/GIojmV1B/catching-sun
 
 Link url
-http://127.0.0.1:5501/index.html
+http://127.0.0.1:5501/index.html     //was ist das??
 
 Slides
-Link Slides.com
+https://docs.google.com/presentation/d/1fENmoytZbB_-XSb8GKsxjM4HDvCumAOk_9tHcARgoMs/edit?usp=sharing
 
 @r00kie123
  

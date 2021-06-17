@@ -300,7 +300,7 @@ function animateAvatar(){
 
     } 
 
-    else if(avatarX+avatar.width <= 0){
+    else if(avatarX <= 0){
         
         isLeft=false;
         avatarX +=10;
