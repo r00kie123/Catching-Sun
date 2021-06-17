@@ -5,14 +5,13 @@ let ctx = canvas.getContext('2d');
 canvas.style.border = 'none';
 
 
-//wireframes/pages
+//wireframes/different screens
 let avatpage = document.getElementById('avatPage');
 let endpage = document.getElementById('endPage');
 
 
 //buttons
 let startBtn = document.querySelector('#start')
-//let restartBtn = document.querySelector('#restart')
 let anissaBtn = document.querySelector('#avatanissa')
 let wonderwomanBtn = document.querySelector('#avatwonderwoman')
 
@@ -20,20 +19,19 @@ let wonderwomanBtn = document.querySelector('#avatwonderwoman')
 
 // images & gifs
 let mySpace = new Image();
-mySpace.src='./milky-way-67504_640.jpg'
-
+mySpace.src='./Images/milky-way-67504_640.jpg'
 
 let sun = new Image();
-sun.src = './sun.png'
+sun.src ='./Images/sun.png'
 
 let thunder = new Image();
-thunder.src = './thunder.png'
+thunder.src = './Images/thunder.png'
 
 let smallAvatanissa = new Image();
-smallAvatanissa.src="./anissaFly2.png"
+smallAvatanissa.src='./Images/anissaFly2.png'
 
 let smallAvatWonderWoman= new Image();
-smallAvatWonderWoman.src="./wonderwoman.png (2).png"
+smallAvatWonderWoman.src='./Images/wonderwoman.png (2).png'
 
 let countdownNum = document.getElementById('countdown');
 
@@ -43,24 +41,28 @@ let countdownNum = document.getElementById('countdown');
 
 //audios 
 let joyscream = new Audio();
-joyscream.src="./joysound.wav"
+joyscream.src="./sounds/joysound.wav"
 joyscream.volume = 0.1;
 
 let painScream = new Audio();
-painScream.src="./touchThunderSound.wav"
+painScream.src="./sounds/touchThunderSound.wav"
 painScream.volume = 0.1;
 
 let startAudio = new Audio();
-startAudio.src = "./gameMusic.mp3"
+startAudio.src = "./sounds/gameMusic.mp3"
 startAudio.volume = 0.1;
 
 let gameOverAudio = new Audio();
-gameOverAudio.src="./gameoverSound.wav"
+gameOverAudio.src="./sounds/gameoverSound.wav"
 gameOverAudio.volume = 0.1;
 
 let gameOverVoice = new Audio();
-gameOverVoice.src ="./gameOverVoice.wav";
+gameOverVoice.src ="./sounds/gameOverVoice.wav"
 gameOverVoice.volume = 0.1;
+
+let click = new Audio();
+click.src="./sounds/click.wav"
+click.volume=0.1;
 
 
 
@@ -81,13 +83,13 @@ let avatar = smallAvatanissa;
 //variables, composites
 let suns = [
     {x: 200, y: 0}, 
-   // {x: 400, y: 100}
+   
 ]
 
 
 let thunders = [
     {x: 300, y: 80}, 
-    //{x: 350, y: 150}
+
 ]
 
 
@@ -96,7 +98,7 @@ let thunders = [
 
 function start(){
 
-    intervalId = 0;    //or null???
+    intervalId = 0;   
     gameOver = false;
     lifepoints = 100;
     falling = true
@@ -119,7 +121,6 @@ function endGame(){
     startBtn.style.display = 'none'
     startAudio.pause();
     endpage.style.display = "block";
-
     gameOverAudio.play();
 
     setTimeout(()=>{
@@ -128,7 +129,7 @@ function endGame(){
 
     },1500)
   
-    let countID = setInterval(()=> {       //mit dieser ID dann clearInterval!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let countID = setInterval(()=> {      
 
        countdownNum.innerText = Number(countdownNum.innerText) -1
 
@@ -136,7 +137,7 @@ function endGame(){
     }, 1000)
    
 
-    setTimeout(()=> {      //<-----------muss ich Interval clearen??????
+    setTimeout(()=> {      //<-----clear Interval??????????????????
 
 
         location.reload();
@@ -145,15 +146,7 @@ function endGame(){
     }, 9000)
 
 
-   /* if(countdownNum.innerText== 0){         //<-----------------das hat nicht funktioniert!!!!!!    
-
-     clearInterval(countID);
-    location.reload(); */
-
-
    
-
-    
 
 
 }
@@ -291,10 +284,18 @@ function animateAvatar(){
     }
 
    if(avatarX+avatar.width >= canvas.width){            //<---------das funktioniert nicht! 
-       
+
+    
+    isRight=false;
     avatarX -=10;
 
     } 
+
+    else if(avatarX+avatar.width <= 0){
+        
+        isLeft=false;
+        avatarX +=10;
+    }
 
 }
 
@@ -459,6 +460,17 @@ window.addEventListener('load', () => {
     
 
      })
+
+     startBtn.addEventListener('mouseover', () => {
+      
+     
+       click.play();
+   
+       
+   
+        })
+   
+
  
 
      anissaBtn.addEventListener('click', ()=>{
@@ -468,11 +480,27 @@ window.addEventListener('load', () => {
 
      })
 
+     anissaBtn.addEventListener('mouseover', ()=>{
+
+
+        avatar = smallAvatanissa;
+        click.play();
+  
+       })
+  
+
 
      wonderwomanBtn.addEventListener('click', ()=>{
 
         avatar = smallAvatWonderWoman;
      })
+
+     wonderwomanBtn.addEventListener('mouseover', ()=>{
+
+        avatar = smallAvatWonderWoman;
+        click.play();
+     })
+ 
  
  })
  
