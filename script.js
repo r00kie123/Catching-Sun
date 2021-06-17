@@ -80,7 +80,8 @@ let isRight= false;
 let isLeft = false;
 let isJumping = false;
 let avatarX = 30, avatarY = 50;
-let avatar = smallAvatanissa;    
+let avatar = smallAvatanissa;   
+let level = 1;  
 
 
 //variables, composites
@@ -172,13 +173,15 @@ function animateThunder(){
         thunders[i].x -= 1
         setTimeout(()=>{
 
-            thunders[i].x -= 2      //auch Level updaten?? also unten "Level: {level}"???
+            thunders[i].x -= 2 
+            level =2;     //auch Level updaten?? also unten "Level: {level}"???
     
             },20000)
 
             setTimeout(()=>{
 
-                thunders[i].x -= 3      //auch Level updaten?? also unten "Level: {level}"???
+                thunders[i].x -= 3  
+                level =3;              //auch Level updaten?? also unten "Level: {level}"???
         
                 },40000)
 
@@ -222,13 +225,15 @@ function animateSun(){
         suns[i].x -= 1
         setTimeout(()=>{
 
-        suns[i].x -= 2      //auch Level updaten?? also unten "Level: {level}"???
+        suns[i].x -= 2   
+        level =2;    //auch Level updaten?? also unten "Level: {level}"???
 
         },20000)
 
         setTimeout(()=>{
 
-            suns[i].x -= 3     //auch Level updaten?? also unten "Level: {level}"???
+            suns[i].x -= 3   
+            level =3;  
     
             },40000)
 
@@ -249,7 +254,6 @@ function animateSun(){
                 joyscream.play();
                 lifepoints +=10;  
 
-            
                 suns[i].x=canvas.width+1;       //hier eventuell nochmal ändern zu width+10 oder so 
                 suns[i].y = Math.floor(Math.random() * (canvas.height -50))
             }
@@ -371,7 +375,7 @@ function draw(){
     
     ctx.font = '23px MIXCOMIC'
     ctx.fillStyle = "white"
-    ctx.fillText(`Lifepoints: ${lifepoints}`, 20, canvas.height - 20)
+    ctx.fillText(`Lifepoints: ${lifepoints}    Level: ${level}`, 20, canvas.height - 20)
 
      
 }

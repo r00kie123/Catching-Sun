@@ -35,7 +35,7 @@ Data structure
 Classes and methods definition. Or functions.
 
 States y States Transitions
-Definition of the different states and their transition (transition functions)
+Definition of the different states and their transition (transition functions)      //fehlt hier noch was???
 splashScreen
 gameScreen
 gameOverScreen
@@ -45,7 +45,7 @@ Trello
 https://trello.com/b/GIojmV1B/catching-sun
 
 Link url
-http://127.0.0.1:5501/index.html     //was ist das??
+http://127.0.0.1:5501/index.html     //was ist das?? 
 
 Slides
 https://docs.google.com/presentation/d/1fENmoytZbB_-XSb8GKsxjM4HDvCumAOk_9tHcARgoMs/edit?usp=sharing
