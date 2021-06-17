@@ -17,6 +17,7 @@ let wonderwomanBtn = document.querySelector('#avatwonderwoman')
 
 
 
+
 // images & gifs
 let mySpace = new Image();
 mySpace.src='./Images/milky-way-67504_640.jpg'
@@ -171,6 +172,7 @@ function animateThunder(){
         ctx.drawImage(thunder, thunders[i].x, thunders[i].y )
     
         thunders[i].x -= 1
+
         setTimeout(()=>{
 
             thunders[i].x -= 2 
@@ -184,6 +186,13 @@ function animateThunder(){
                 level =3;              //auch Level updaten?? also unten "Level: {level}"???
         
                 },40000)
+
+               /* setTimeout(()=>{
+
+                    thunders[i].y += 3    //das hier ändern   donner kommt von überall  
+                    level =4;              //auch Level updaten?? also unten "Level: {level}"???
+            
+                    },60000)  */
 
         if (thunders[i].x + thunder.width < 0) {
             thunders[i] = {
@@ -199,9 +208,18 @@ function animateThunder(){
            if(avatarY + avatar.height < thunders[i].y + thunder.height && avatarY + avatar.height > thunders[i].y) {
        
                painScream.play();
-               lifepoints -=20;    
+
+               if(lifepoints>=100){
+
+               lifepoints= Math.round(lifepoints/2);  
                thunders[i].x=canvas.width+1;   
                thunders[i].y = Math.floor(Math.random() * (canvas.height -50))
+
+               } else {
+
+                gameOver=true; 
+               }
+            
 
            }
        
@@ -236,6 +254,13 @@ function animateSun(){
             level =3;  
     
             },40000)
+
+            setTimeout(()=>{
+
+                suns[i].x -= 3    //das hier ändern??? sonnen kommen hier auch schon von oben??? wie donnner?? oder erst im next leveL???
+                level =4;              //auch Level updaten?? also unten "Level: {level}"???
+        
+                },60000)
 
        
         if (suns[i].x + sun.width < 0) {
