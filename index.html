@@ -10,10 +10,17 @@
 <body class="body">
 
 <div id="avatPage">
-  <h1 class="heading">Welcome to Catching Sun!</h1>
+
+ <div class="header">     
+
+    <img src="./Images/bam__1_-removebg-preview.png" id="BAM"> 
+    <h1 class="heading">Welcome to Catching Sun! </h1>
+    <button id="playmusic"><img src="./Images/button_music.png" alt="Play Music!"></button> 
+ </div>
+   
 
   <p id="instructions">Will you accept the challenge? Try to catch as many suns as possible and stay away from thunder! Also: Be careful with gravity- don't let it get to strong or weak.
-  Use the corresponding arrow keys (^, >, <) to let your avatar fly up, right or left. Ready? 
+  Use the corresponding arrow keys '^, >, <' to let your avatar fly up, right or left. Ready? 
 
 
 
@@ -27,16 +34,16 @@
 
 
 
-        <abbr title="Thunder Woman" class="imagecaption">    
+        <span>Thunder Woman</span>      
 <img src="./Images/avatar anissa (1).png" alt="Thunder Woman" >
-</abbr>
+
     </button>
   
     <button class ="button" type="button" id="avatwonderwoman">
 
-        <abbr title="Wonder Woman"  class="imagecaption"> 
-<img src="./Images/avatar wonderwoman2.png" alt="Wonder Woman">
-</abbr>
+        <span>Wonder Woman</span>   
+        <img src="./Images/avatar wonderwoman2.png" alt="Wonder Woman">
+
     </button> 
     <br>
     <br>
@@ -51,8 +58,12 @@
 <div id="endPage">
 
  
-<p id="youLose">YOU LOSE.<br>
-                TRY AGAIN?</p>
+<p id="youLose">YOUR SCORE: <span id="finalscore">0</span></p>
+    
+<p id='yourlevel'>YOU GOT TO LEVEL <span id="finallevel">0</span></p>    
+   
+    
+                <p id='tryagain'>TRY AGAIN?</p>
 <p id="countdown">9</p>
 
 </div>

@@ -56,6 +56,16 @@
 
 }
 
+#yourlevel, #tryagain{
+
+
+    font-family: "MARVELFONT", 'Courier New', Courier, monospace;
+
+
+}
+
+
+
 
 
 body{
@@ -92,10 +102,50 @@ body{
 
 
 
-     
-    .imagecaption{
+  
+
+    .header{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 
-        font-family: "MIXCOMIC", 'Courier New', Courier, monospace;  
+    }
+
+
+    .header button{
+
+    border:none;
+    background-color: lightgrey;
+
+    }
+
+   #avatwonderwoman, #avatanissa{
+
+
+    position: relative;
+
+   }
+
+   
+
+    #avatwonderwoman span, #avatanissa span {
+    display: none;
+    font-family: "MIXCOMIC", 'Courier New', Courier, monospace; 
+    padding: 10px;
+    margin:auto;
+    position: absolute;
+    width: 80%;
+    bottom: 0;
+    background-color: lightslategray;
+
+    }
+
+
+    #avatwonderwoman:hover span, #avatanissa:hover span{
+
+        display: block;
 
     }

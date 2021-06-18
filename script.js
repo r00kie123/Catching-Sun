@@ -14,8 +14,11 @@ let endpage = document.getElementById('endPage');
 let startBtn = document.querySelector('#start')
 let anissaBtn = document.querySelector('#avatanissa')
 let wonderwomanBtn = document.querySelector('#avatwonderwoman')
+let musicbutton = document.getElementById('playmusic')
 
 
+let finalscore = document.querySelector('#finalscore');   
+let finallevel =document.querySelector('#finallevel');           
 
 
 // images & gifs
@@ -35,7 +38,7 @@ let smallAvatWonderWoman= new Image();
 smallAvatWonderWoman.src='./Images/wonderwoman.png (2).png'
 
 let countdownNum = document.getElementById('countdown');
-
+    
 
 
 
@@ -67,6 +70,7 @@ click.volume=0.1;
 
 let avatmusic= new Audio();
 avatmusic.src="./sounds/startmusic.m4a"
+avatmusic.volume=0.1;
 
 
 
@@ -83,6 +87,8 @@ let isJumping = false;
 let avatarX = 30, avatarY = 50;
 let avatar = smallAvatanissa;   
 let level = 1;  
+          
+
 
 
 //variables, composites
@@ -133,6 +139,8 @@ function endGame(){
     startAudio.pause();
     endpage.style.display = "block";
     gameOverAudio.play();
+    finallevel.innerHTML = level;
+    finalscore.innerHTML = lifepoints;
 
     setTimeout(()=>{
 
@@ -152,6 +160,8 @@ function endGame(){
 
 
         location.reload();
+        endpage.style.display="none"       //Das hier geändert 
+
 
 
     }, 9000)
@@ -176,30 +186,54 @@ function animateThunder(){
         setTimeout(()=>{
 
             thunders[i].x -= 2 
-            level =2;     //auch Level updaten?? also unten "Level: {level}"???
+            level =2;    
+           // finallevel=2;               //auch Level updaten?? also unten "Level: {level}"???
     
             },20000)
 
-            setTimeout(()=>{
+           let level3= setTimeout(()=>{
 
                 thunders[i].x -= 3  
-                level =3;              //auch Level updaten?? also unten "Level: {level}"???
+                level =3;  
+              //  finallevel=3;            //auch Level updaten?? also unten "Level: {level}"???
         
                 },40000)
 
-               /* setTimeout(()=>{
+                  
 
-                    thunders[i].y += 3    //das hier ändern   donner kommt von überall  
-                    level =4;              //auch Level updaten?? also unten "Level: {level}"???
-            
-                    },60000)  */
+
+
+                   
+
+                   
 
         if (thunders[i].x + thunder.width < 0) {
             thunders[i] = {
                 x: canvas.width+1,   
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
+
+            setTimeout(()=>{      //das hier geändert
+                    
+    
+                thunders[i].x= Math.floor(Math.random() * canvas.width)
+                thunders[i].x -=1 
+                thunders[i].y = Math.floor(Math.random() * (canvas.height -50)) 
+                thunders[i].y +=1  
+                level = 4;
+               // finallevel=4;
+        
+              },60000) 
        } 
+
+                        
+
+       
+
+
+       
+
+
 
 
        if(avatarX + avatar.width >= thunders[i].x && avatarX <= thunders[i].x + thunder.width)
@@ -236,15 +270,18 @@ function animateThunder(){
 }
 
 
+
 function animateSun(){
 
     for(let i=0 ; i< suns.length; i++){
         ctx.drawImage(sun, suns[i].x, suns[i].y ) 
         suns[i].x -= 1
+
         setTimeout(()=>{
 
         suns[i].x -= 2   
-        level =2;    //auch Level updaten?? also unten "Level: {level}"???
+        level =2;   
+      
 
         },20000)
 
@@ -252,15 +289,17 @@ function animateSun(){
 
             suns[i].x -= 3   
             level =3;  
+           // finallevel=3;
     
             },40000)
 
-            setTimeout(()=>{
+           /* setTimeout(()=>{
 
                 suns[i].x -= 3    //das hier ändern??? sonnen kommen hier auch schon von oben??? wie donnner?? oder erst im next leveL???
-                level =4;              //auch Level updaten?? also unten "Level: {level}"???
+                level =4;     
+                finallevel=4;         //auch Level updaten?? also unten "Level: {level}"???
         
-                },60000)
+                },60000)*/
 
        
         if (suns[i].x + sun.width < 0) {
@@ -268,7 +307,17 @@ function animateSun(){
                 x: canvas.width+1,        
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
-            
+            setTimeout(()=>{      //das hier geändert
+                    
+    
+                suns[i].x= Math.floor(Math.random() * canvas.width)
+                suns[i].x -=1 
+                suns[i].y = Math.floor(Math.random() * (canvas.height -50)) 
+                suns[i].y +=1  
+                level = 4;
+               // finallevel=4;
+        
+              },60000) 
        } 
 
        if(avatarX + avatar.width >= suns[i].x && avatarX <= suns[i].x + sun.width)
@@ -423,8 +472,10 @@ function draw(){
 //Event listeners
 
 window.addEventListener('load', () => {
-    avatmusic.play();   //<--------------------------starts too late!!!!
-    canvas.style.display = 'none'  
+    
+   
+     //avatmusic.play(); 
+     canvas.style.display = 'none'  
      startBtn.style.display = 'block'
      avatpage.style.display ="block";
      endpage.style.display ="none";
@@ -541,6 +592,12 @@ window.addEventListener('load', () => {
 
         avatar = smallAvatWonderWoman;
         click.play();
+     })
+
+
+     musicbutton.addEventListener('click', ()=>{
+
+        avatmusic.play();
      })
  
  
