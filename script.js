@@ -183,7 +183,7 @@ function animateThunder(){
     
         thunders[i].x -= 1
 
-        setTimeout(()=>{
+        let level2Time = setTimeout(()=>{
 
             thunders[i].x -= 2 
             level =2;    
@@ -191,12 +191,12 @@ function animateThunder(){
     
             },20000)
 
-           let level3= setTimeout(()=>{
-
+          let level3Time = setTimeout(()=>{
+            clearTimeout(level2Time)
                 thunders[i].x -= 3  
                 level =3;  
               //  finallevel=3;            //auch Level updaten?? also unten "Level: {level}"???
-        
+                
                 },40000)
 
                   
@@ -214,13 +214,14 @@ function animateThunder(){
             }
 
             setTimeout(()=>{      //das hier geändert
-                    
+                clearTimeout(level2Time)  
+                clearTimeout(level3Time)
     
                 thunders[i].x= Math.floor(Math.random() * canvas.width)
                 thunders[i].x -=1 
                 thunders[i].y = Math.floor(Math.random() * (canvas.height -50)) 
                 thunders[i].y +=1  
-                level = 4;
+                level =4;
                // finallevel=4;
         
               },60000) 
@@ -277,16 +278,17 @@ function animateSun(){
         ctx.drawImage(sun, suns[i].x, suns[i].y ) 
         suns[i].x -= 1
 
-        setTimeout(()=>{
+       let level2Time= setTimeout(()=>{
 
+       
         suns[i].x -= 2   
         level =2;   
       
 
         },20000)
 
-        setTimeout(()=>{
-
+       let level3Time= setTimeout(()=>{
+          clearTimeout(level2Time)
             suns[i].x -= 3   
             level =3;  
            // finallevel=3;
@@ -295,9 +297,9 @@ function animateSun(){
 
            /* setTimeout(()=>{
 
-                suns[i].x -= 3    //das hier ändern??? sonnen kommen hier auch schon von oben??? wie donnner?? oder erst im next leveL???
+                suns[i].x -= 3  
                 level =4;     
-                finallevel=4;         //auch Level updaten?? also unten "Level: {level}"???
+                finallevel=4;         
         
                 },60000)*/
 
@@ -308,13 +310,14 @@ function animateSun(){
                 y: Math.floor(Math.random() * (canvas.height -50))
             }
             setTimeout(()=>{      //das hier geändert
-                    
+                   clearTimeout(level2Time) 
+                   clearTimeout(level3Time)
     
                 suns[i].x= Math.floor(Math.random() * canvas.width)
                 suns[i].x -=1 
                 suns[i].y = Math.floor(Math.random() * (canvas.height -50)) 
                 suns[i].y +=1  
-                level = 4;
+                level =4;              //hier geändert
                // finallevel=4;
         
               },60000) 
