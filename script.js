@@ -317,7 +317,7 @@ function animateSun(){
                 suns[i].x -=1 
                 suns[i].y = Math.floor(Math.random() * (canvas.height -50)) 
                 suns[i].y +=1  
-                level =4;              //hier geändert
+               // level =4;              //hier geändert                 //<-----------------------------------------
                // finallevel=4;
         
               },60000) 
